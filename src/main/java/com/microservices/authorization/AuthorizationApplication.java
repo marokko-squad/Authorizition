@@ -26,9 +26,12 @@ public class AuthorizationApplication {
 	@Autowired
 	RestConnector restConnector;
 
+	@Autowired
+	UrlConfig urlConfig;
 
 	@GetMapping("/auth/v1/is-allowed")
 	public ResponseEntity<String> isAllowed(){
+		System.out.println("urlConfig.getUrl() = " + urlConfig.getUrl());
 		PersonDto person = restConnector.getPerson("3");
 		return new ResponseEntity<>(person.getName(), HttpStatus.OK);
 	}
